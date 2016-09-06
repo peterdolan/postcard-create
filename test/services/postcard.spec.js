@@ -4,16 +4,16 @@ var expect  = require('chai').expect;
 var Angular = require('angular');
 var Sinon   = require('sinon');
 
-var Config  = require('../../config');
+var Config = require('../../config');
+
+var $q;
+var $rootScope;
+var API;
+var Postcard;
 
 require('angular-mocks');
 
 describe('postcard service', function () {
-
-  var $q;
-  var $rootScope;
-  var API;
-  var Postcard;
 
   beforeEach(Angular.mock.inject(function ($injector) {
     $q         = $injector.get('$q');
@@ -35,7 +35,6 @@ describe('postcard service', function () {
 
       expect(API.post.firstCall.args[0]).to.eql(Config.API_HOST + '/postcards');
       expect(API.post.firstCall.args[1]).to.eql(payload);
-
       API.post.restore();
     });
 
